@@ -19,29 +19,29 @@ const CompanyInsights = () => {
                     <li><strong>Job Listings:</strong> 200,000+ active job listings at any given time.</li>
                     <li><strong>Revenue Growth:</strong> 20% year-over-year revenue growth.</li>
                 </ul>
-                <img src="/images/growth-chart.png" alt="Growth Chart" className="insight-image"/>
+                {/* <img src="/images/growth-chart.png" alt="Growth Chart" className="insight-image"/> */}
             </section>
 
             <section>
                 <h3>User Testimonials</h3>
                 <blockquote>
-                    "Hire-Zone helped me find my dream job within a week! The platform is so easy to use and the job recommendations were spot on." - Jane Doe, Software Engineer
+                    "Hire-Zone helped me find my dream job within a week! The platform is so easy to use and the job recommendations were spot on." - Gee Kay, Software Engineer
                 </blockquote>
                 <blockquote>
-                    "As an employer, Hire-Zone has been invaluable in finding qualified candidates quickly. The skill verification feature is a game-changer." - John Smith, HR Manager
+                    "As an employer, Hire-Zone has been invaluable in finding qualified candidates quickly. The skill verification feature is a game-changer." - Vee Kay, HR Manager
                 </blockquote>
             </section>
 
             <section>
                 <h3>Market Position</h3>
                 <p>Hire-Zone is positioned as a top-tier job search platform, competing with industry giants while offering unique features like skill verification, automated interview scheduling, and detailed company insights.</p>
-                <img src="/images/market-position.png" alt="Market Position" className="insight-image"/>
+                {/* <img src="/images/market-position.png" alt="Market Position" className="insight-image"/> */}
             </section>
 
             <section>
                 <h3>Future Plans</h3>
                 <p>Looking ahead, Hire-Zone aims to expand its reach globally, introduce AI-driven job matching algorithms, and enhance the user experience with more personalized features.</p>
-                <img src="/images/future-plans.png" alt="Future Plans" className="insight-image"/>
+                {/* <img src="/images/future-plans.png" alt="Future Plans" className="insight-image"/> */}
             </section>
         </div>
     );
