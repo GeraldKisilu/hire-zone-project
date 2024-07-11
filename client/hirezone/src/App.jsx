@@ -8,6 +8,7 @@ import Login from './components/Login';
 import CompanyInsights from './components/CompanyInsights';
 import Feedback from './components/Feedback';
 import './index.css';
+import Employers from './components/Employers';
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/jobs" element={<JobListings />} />
+                        <Route path="/employers" element={<Employers />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/insights" element={<CompanyInsights />} />
                         <Route path="/feedback" element={<Feedback />} />
