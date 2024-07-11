@@ -107,13 +107,13 @@ const Login = () => {
             <form>
                 <button type="submit" onClick={handleCreateAccount}>Create Account</button>
                 <button type="submit" onClick={handleLogin}>Login</button>
-                <div>
+                {/* <div>
                     <label>Role: </label>
                     <select value={role} onChange={(e) => setRole(e.target.value)}>
                         <option value="job_seeker">Job Seeker</option>
                         <option value="employer">Employer</option>
                     </select>
-                </div>
+                </div> */}
                 {role === 'job_seeker' && (
                     <>
                         <div>
@@ -127,6 +127,15 @@ const Login = () => {
                             />
                         </div>
                         <div>
+                            <label>Middle Name: </label>
+                            <input
+                                type="text"
+                                name="middleName"
+                                value={formFields.middleName}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
                             <label>Last Name: </label>
                             <input
                                 type="text"
@@ -136,15 +145,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        {/* <div>
-                            <label>Middle Name: </label>
-                            <input
-                                type="text"
-                                name="middleName"
-                                value={formFields.middleName}
-                                onChange={handleInputChange}
-                            />
-                        </div> */}
+                       
                         <div>
                             <label>Email: </label>
                             <input
