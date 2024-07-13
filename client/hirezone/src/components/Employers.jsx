@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Employers.css'; // Import the CSS file for styling
 
 const Employers = () => {
   const [employers, setEmployers] = useState([]);
@@ -21,12 +22,17 @@ const Employers = () => {
   };
 
   return (
-    <div>
+    <div className="employers-container">
       <h2>Employer List</h2>
-      <ul>
+      <ul className="employer-list">
         {employers.map(employer => (
-          <li key={employer.id}>
-            <strong>{employer.company_name}</strong> - {employer.industry}, {employer.location} ({employer.contact_email})
+          <li key={employer.id} className="employer-item">
+            <div className="employer-card">
+              <h3>{employer.company_name}</h3>
+              <p><strong>Industry:</strong> {employer.industry}</p>
+              <p><strong>Location:</strong> {employer.location}</p>
+              <p><strong>Contact Email:</strong> {employer.contact_email}</p>
+            </div>
           </li>
         ))}
       </ul>

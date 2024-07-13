@@ -35,15 +35,16 @@
     font-size: 1rem;
 }
 
-.job-listings {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 1rem;
+.job-list {
+    list-style: none;
+    padding: 0;
+}
+
+.job-item {
+    margin-bottom: 1rem;
 }
 
 .job-card {
-    width: calc(50% - 1rem);
     padding: 1rem;
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -61,7 +62,7 @@
     font-size: 1rem;
 }
 
-.job-card button {
+.apply-button {
     padding: 0.5rem 1rem;
     background-color: #333;
     color: white;
@@ -72,6 +73,6 @@
     transition: background-color 0.3s ease;
 }
 
-.job-card button:hover {
+.apply-button:hover {
     background-color: #555;
 }

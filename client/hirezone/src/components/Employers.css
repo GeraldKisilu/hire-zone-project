@@ -1,0 +1,41 @@
+.employers-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.employers-container h2 {
+    margin-top: 0;
+    font-size: 2.5rem;
+}
+
+.employer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.employer-item {
+    margin-bottom: 1rem;
+}
+
+.employer-card {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.employer-card h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.employer-card p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
