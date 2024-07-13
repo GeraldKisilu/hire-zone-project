@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const jobs = () => {
+const JobListings = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     fetchJobs();
   }, []);
+
+  const navigate = useNavigate();
 
   const fetchJobs = async () => {
     try {
@@ -30,8 +33,9 @@ const jobs = () => {
           </li>
         ))}
       </ul>
+      <button onClick={() => navigate('/form')}>Apply</button>
     </div>
   );
 };
 
-export default jobs;
+export default JobListings;
