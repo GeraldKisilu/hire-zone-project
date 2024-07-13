@@ -10,21 +10,38 @@ const Form = () => {
   const [portfolioUrl, setPortfolioUrl] = useState('');
   const [jobseekerId, setJobseekerId] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const formData = {
       name,
       email,
-      resumeUrl,
+      resume_url: resumeUrl,
       skills,
-      educationLevel,
-      workExperience,
-      portfolioUrl,
-      jobseekerId,
+      education_level: educationLevel,
+      work_experience: workExperience,
+      portfolio_url: portfolioUrl,
+      jobseeker_id: jobseekerId,
     };
-    
-    console.log('Form submitted:', formData);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/form/jobseekers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log('Form submitted successfully:', result);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -124,6 +141,5 @@ const Form = () => {
     </div>
   );
 };
-
 
 export default Form;
