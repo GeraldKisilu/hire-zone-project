@@ -1,0 +1,43 @@
+.job-seekers-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .job-seekers-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .job-seeker-item {
+    margin-bottom: 20px;
+  }
+  
+  .job-seeker-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .job-seeker-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .job-seeker-card h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .job-seeker-card p {
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  .job-seeker-card p strong {
+    color: #333;
+  }
+  

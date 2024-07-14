@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-// import './JobSeekers.css';
+import './JobSeekers.css';  
 
 const JobSeekers = () => {
-  const { employerId } = useParams();
   const [jobSeekers, setJobSeekers] = useState([]);
 
   useEffect(() => {
     fetchJobSeekers();
-  }, [employerId]);
+  }, []);
 
   const fetchJobSeekers = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8050/employer/${employerId}/job_seekers`);
+      const response = await fetch('http://127.0.0.1:8050/jobseekers/');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
