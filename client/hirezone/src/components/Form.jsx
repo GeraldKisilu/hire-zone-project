@@ -1,36 +1,67 @@
 import React, { useState } from 'react';
+// import './Form.css'; // Import the CSS file
 
 const Form = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [resumeUrl, setResumeUrl] = useState('');
-  const [skills, setSkills] = useState('');
-  const [educationLevel, setEducationLevel] = useState('');
-  const [workExperience, setWorkExperience] = useState('');
-  const [portfolioUrl, setPortfolioUrl] = useState('');
-  const [jobseekerId, setJobseekerId] = useState('');
+  // State for job seekers' basic information
+  const [jobSeeker, setJobSeeker] = useState({
+    firstName: '',
+    lastName: '',
+    middleName: '',
+    email: '',
+    phoneNumber: '',
+  });
 
+  // State for job seekers' details
+  const [jobSeekerDetails, setJobSeekerDetails] = useState({
+    resumeUrl: '',
+    skills: '',
+    educationLevel: '',
+    workExperience: '',
+    portfolioUrl: '',
+    jobSeekerId: '',
+    academicCertificate: null,
+    cv: null,
+  });
+
+  // Handle changes for job seekers' basic information
+  const handleJobSeekerChange = (e) => {
+    setJobSeeker({ ...jobSeeker, [e.target.name]: e.target.value });
+  };
+
+  // Handle changes for job seekers' details
+  const handleJobSeekerDetailsChange = (e) => {
+    setJobSeekerDetails({ ...jobSeekerDetails, [e.target.name]: e.target.value });
+  };
+
+  // Handle file changes for uploads
+  const handleFileChange = (e) => {
+    setJobSeekerDetails({ ...jobSeekerDetails, [e.target.name]: e.target.files[0] });
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const formData = {
-      name,
-      email,
-      resume_url: resumeUrl,
-      skills,
-      education_level: educationLevel,
-      work_experience: workExperience,
-      portfolio_url: portfolioUrl,
-      jobseeker_id: jobseekerId,
-    };
+    // Create a form data object for file uploads
+    const formData = new FormData();
+    formData.append('first_name', jobSeeker.firstName);
+    formData.append('last_name', jobSeeker.lastName);
+    formData.append('middle_name', jobSeeker.middleName);
+    formData.append('email', jobSeeker.email);
+    formData.append('phone_number', jobSeeker.phoneNumber);
+    formData.append('resume_url', jobSeekerDetails.resumeUrl);
+    formData.append('skills', jobSeekerDetails.skills);
+    formData.append('education_level', jobSeekerDetails.educationLevel);
+    formData.append('work_experience', jobSeekerDetails.workExperience);
+    formData.append('portfolio_url', jobSeekerDetails.portfolioUrl);
+    formData.append('jobseeker_id', jobSeekerDetails.jobSeekerId);
+    formData.append('academic_certificate', jobSeekerDetails.academicCertificate);
+    formData.append('cv', jobSeekerDetails.cv);
 
     try {
       const response = await fetch('http://127.0.0.1:5000/form/jobseekers', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -45,98 +76,153 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Application Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
+      <form onSubmit={handleSubmit} className="application-form">
+        <h3>Job Seeker Information</h3>
+        <div className="form-group">
+          <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            id="firstName"
+            name="firstName"
+            value={jobSeeker.firstName}
+            onChange={handleJobSeekerChange}
             required
           />
         </div>
-        <div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={jobSeeker.lastName}
+            onChange={handleJobSeekerChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="middleName">Middle Name:</label>
+          <input
+            type="text"
+            id="middleName"
+            name="middleName"
+            value={jobSeeker.middleName}
+            onChange={handleJobSeekerChange}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={jobSeeker.email}
+            onChange={handleJobSeekerChange}
             required
           />
         </div>
-        <div>
+        <div className="form-group">
+          <label htmlFor="phoneNumber">Phone Number:</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            value={jobSeeker.phoneNumber}
+            onChange={handleJobSeekerChange}
+            required
+          />
+        </div>
+
+        <h3>Job Seeker Details</h3>
+        <div className="form-group">
           <label htmlFor="resumeUrl">Resume URL:</label>
           <input
             type="url"
             id="resumeUrl"
             name="resumeUrl"
-            value={resumeUrl}
-            onChange={(e) => setResumeUrl(e.target.value)}
+            value={jobSeekerDetails.resumeUrl}
+            onChange={handleJobSeekerDetailsChange}
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="skills">Skills:</label>
           <input
             type="text"
             id="skills"
             name="skills"
-            value={skills}
-            onChange={(e) => setSkills(e.target.value)}
+            value={jobSeekerDetails.skills}
+            onChange={handleJobSeekerDetailsChange}
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="educationLevel">Education Level:</label>
           <input
             type="text"
             id="educationLevel"
             name="educationLevel"
-            value={educationLevel}
-            onChange={(e) => setEducationLevel(e.target.value)}
+            value={jobSeekerDetails.educationLevel}
+            onChange={handleJobSeekerDetailsChange}
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="workExperience">Work Experience:</label>
           <input
             type="text"
             id="workExperience"
             name="workExperience"
-            value={workExperience}
-            onChange={(e) => setWorkExperience(e.target.value)}
+            value={jobSeekerDetails.workExperience}
+            onChange={handleJobSeekerDetailsChange}
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="portfolioUrl">Portfolio URL:</label>
           <input
             type="url"
             id="portfolioUrl"
             name="portfolioUrl"
-            value={portfolioUrl}
-            onChange={(e) => setPortfolioUrl(e.target.value)}
+            value={jobSeekerDetails.portfolioUrl}
+            onChange={handleJobSeekerDetailsChange}
             required
           />
         </div>
-        <div>
-          <label htmlFor="jobseekerId">Jobseeker ID:</label>
+        <div className="form-group">
+          <label htmlFor="jobSeekerId">Job Seeker ID:</label>
           <input
             type="text"
-            id="jobseekerId"
-            name="jobseekerId"
-            value={jobseekerId}
-            onChange={(e) => setJobseekerId(e.target.value)}
+            id="jobSeekerId"
+            name="jobSeekerId"
+            value={jobSeekerDetails.jobSeekerId}
+            onChange={handleJobSeekerDetailsChange}
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <div className="form-group">
+          <label htmlFor="academicCertificate">Academic Certificate:</label>
+          <input
+            type="file"
+            id="academicCertificate"
+            name="academicCertificate"
+            onChange={handleFileChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="cv">CV:</label>
+          <input
+            type="file"
+            id="cv"
+            name="cv"
+            onChange={handleFileChange}
+            required
+          />
+        </div>
+        <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
   );
