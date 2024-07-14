@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './Login.css'; // Import the CSS file
 
 const Login = () => {
     const [role, setRole] = useState('job_seeker');
@@ -102,21 +103,19 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>USER REGISTRATION / LOGIN</h2>
-            <form>
-                <button type="submit" onClick={handleCreateAccount}>Create Account</button>
-                <button type="submit" onClick={handleLogin}>Login</button>
-                {/* <div>
+        <div className="login-container">
+            <h2>User Registration / Login</h2>
+            <form className="login-form">
+                <div className="role-selection">
                     <label>Role: </label>
                     <select value={role} onChange={(e) => setRole(e.target.value)}>
                         <option value="job_seeker">Job Seeker</option>
                         <option value="employer">Employer</option>
                     </select>
-                </div> */}
+                </div>
                 {role === 'job_seeker' && (
                     <>
-                        <div>
+                        <div className="form-group">
                             <label>First Name: </label>
                             <input
                                 type="text"
@@ -126,7 +125,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Middle Name: </label>
                             <input
                                 type="text"
@@ -135,7 +134,7 @@ const Login = () => {
                                 onChange={handleInputChange}
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Last Name: </label>
                             <input
                                 type="text"
@@ -145,8 +144,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                       
-                        <div>
+                        <div className="form-group">
                             <label>Email: </label>
                             <input
                                 type="email"
@@ -156,7 +154,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Phone Number: </label>
                             <input
                                 type="text"
@@ -166,7 +164,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Details: </label>
                             <textarea
                                 name="details"
@@ -178,7 +176,7 @@ const Login = () => {
                 )}
                 {role === 'employer' && (
                     <>
-                        <div>
+                        <div className="form-group">
                             <label>Company Name: </label>
                             <input
                                 type="text"
@@ -188,7 +186,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Industry: </label>
                             <input
                                 type="text"
@@ -198,7 +196,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Location: </label>
                             <input
                                 type="text"
@@ -208,7 +206,7 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Contact Email: </label>
                             <input
                                 type="email"
@@ -220,6 +218,10 @@ const Login = () => {
                         </div>
                     </>
                 )}
+                <div className="form-buttons">
+                    <button type="submit" onClick={handleCreateAccount}>Create Account</button>
+                    <button type="submit" onClick={handleLogin}>Login</button>
+                </div>
             </form>
         </div>
     );
