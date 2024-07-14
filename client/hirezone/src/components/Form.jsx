@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Form.css'; // Import the CSS file
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -45,10 +46,10 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Application Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="application-form">
+        <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -59,7 +60,7 @@ const Form = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -70,7 +71,7 @@ const Form = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="resumeUrl">Resume URL:</label>
           <input
             type="url"
@@ -81,7 +82,7 @@ const Form = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="skills">Skills:</label>
           <input
             type="text"
@@ -92,7 +93,7 @@ const Form = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="educationLevel">Education Level:</label>
           <input
             type="text"
@@ -103,7 +104,7 @@ const Form = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="workExperience">Work Experience:</label>
           <input
             type="text"
@@ -114,7 +115,7 @@ const Form = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="portfolioUrl">Portfolio URL:</label>
           <input
             type="url"
@@ -125,7 +126,7 @@ const Form = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="jobseekerId">Jobseeker ID:</label>
           <input
             type="text"
@@ -136,7 +137,7 @@ const Form = () => {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
   );
