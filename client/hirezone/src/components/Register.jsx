@@ -5,7 +5,6 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const [role, setRole] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,7 +15,7 @@ const Register = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, email, password, role }),
+                body: JSON.stringify({ username, email, password }),
             });
 
             const data = await response.json();
@@ -61,20 +60,6 @@ const Register = () => {
                         onChange={(e) => setPassword(e.target.value)} 
                         required 
                     />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="role">Role:</label>
-                    <select
-                        id="role"
-                        name="role"
-                        value={role}
-                        onChange={(e) => setRole(e.target.value)}
-                        required
-                    >
-                        <option value="">Select Role</option>
-                        <option value="employer">Employer</option>
-                        <option value="job_seeker">Job Seeker</option>
-                    </select>
                 </div>
                 <button type="submit">Register</button>
             </form>

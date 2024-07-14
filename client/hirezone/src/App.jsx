@@ -8,7 +8,8 @@ import Login from './components/Login';
 import CompanyInsights from './components/CompanyInsights';
 import Feedback from './components/Feedback';
 import Employers from './components/Employers';
-import Form from './components/Form';  // Import FormComponent
+import Form from './components/Form';
+import JobSeekers from './components/JobSeekers';
 import './index.css';
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
                         <Route path="/insights" element={<CompanyInsights />} />
                         <Route path="/feedback" element={<Feedback />} />
                         <Route path="/form" element={<Form />} />
+                        <Route path="/seekers/:employerId" element={<JobSeekers />} />
                     </Routes>
                 </main>
                 <Footer />

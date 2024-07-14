@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './Employers.css'; 
+import { useNavigate } from 'react-router-dom';
+import './Employers.css';
 
 const Employers = () => {
   const [employers, setEmployers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchEmployers();
@@ -10,15 +12,19 @@ const Employers = () => {
 
   const fetchEmployers = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8050/employer/newemployers'); 
+      const response = await fetch('http://127.0.0.1:8050/employer/newemployers');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      setEmployers(data);  
+      setEmployers(data);
     } catch (error) {
       console.error('Error fetching employers:', error);
     }
+  };
+
+  const handleJobSeekersButtonClick = (employerId) => {
+    navigate(`/seekers/${employerId}`);
   };
 
   return (
@@ -32,6 +38,12 @@ const Employers = () => {
               <p><strong>Industry:</strong> {employer.industry}</p>
               <p><strong>Location:</strong> {employer.location}</p>
               <p><strong>Contact Email:</strong> {employer.contact_email}</p>
+              <button
+                className="job-seekers-button"
+                onClick={() => handleJobSeekersButtonClick(employer.id)}
+              >
+                Job Seekers
+              </button>
             </div>
           </li>
         ))}

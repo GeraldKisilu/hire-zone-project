@@ -18,10 +18,12 @@ const Form = () => {
     educationLevel: '',
     workExperience: '',
     portfolioUrl: '',
-    jobSeekerId: '',
     academicCertificate: null,
     cv: null,
   });
+
+  // State for job seeker ID
+  const [jobSeekerId, setJobSeekerId] = useState(null);
 
   // Handle changes for job seekers' basic information
   const handleJobSeekerChange = (e) => {
@@ -38,47 +40,102 @@ const Form = () => {
     setJobSeekerDetails({ ...jobSeekerDetails, [e.target.name]: e.target.files[0] });
   };
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
+  // Reset form fields
+  const resetFormFields = () => {
+    setJobSeeker({
+      firstName: '',
+      lastName: '',
+      middleName: '',
+      email: '',
+      phoneNumber: '',
+    });
+    setJobSeekerDetails({
+      resumeUrl: '',
+      skills: '',
+      educationLevel: '',
+      workExperience: '',
+      portfolioUrl: '',
+      academicCertificate: null,
+      cv: null,
+    });
+    setJobSeekerId(null);
+  };
+
+  // Handle form submission for basic information
+  const handleBasicInfoSubmit = async (e) => {
     e.preventDefault();
-    
-    // Create a form data object for file uploads
-    const formData = new FormData();
-    formData.append('first_name', jobSeeker.firstName);
-    formData.append('last_name', jobSeeker.lastName);
-    formData.append('middle_name', jobSeeker.middleName);
-    formData.append('email', jobSeeker.email);
-    formData.append('phone_number', jobSeeker.phoneNumber);
-    formData.append('resume_url', jobSeekerDetails.resumeUrl);
-    formData.append('skills', jobSeekerDetails.skills);
-    formData.append('education_level', jobSeekerDetails.educationLevel);
-    formData.append('work_experience', jobSeekerDetails.workExperience);
-    formData.append('portfolio_url', jobSeekerDetails.portfolioUrl);
-    formData.append('jobseeker_id', jobSeekerDetails.jobSeekerId);
-    formData.append('academic_certificate', jobSeekerDetails.academicCertificate);
-    formData.append('cv', jobSeekerDetails.cv);
+
+    const basicInfoData = {
+      first_name: jobSeeker.firstName,
+      last_name: jobSeeker.lastName,
+      middle_name: jobSeeker.middleName,
+      email: jobSeeker.email,
+      phone_number: jobSeeker.phoneNumber,
+    };
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/form/jobseekers', {
+      const basicInfoResponse = await fetch('http://127.0.0.1:8050/jobseekers/', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(basicInfoData),
       });
 
-      if (!response.ok) {
+      if (!basicInfoResponse.ok) {
         throw new Error('Network response was not ok');
       }
 
-      const result = await response.json();
-      console.log('Form submitted successfully:', result);
+      const basicInfoResult = await basicInfoResponse.json();
+      setJobSeekerId(basicInfoResult.id);
+      console.log('Basic information submitted successfully:', basicInfoResult);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error submitting basic information:', error);
+    }
+  };
+
+  // Handle form submission for job seeker details
+  const handleDetailsSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!jobSeekerId) {
+      alert('Please submit the basic information first.');
+      return;
+    }
+
+    const detailsData = new FormData();
+    detailsData.append('resume_url', jobSeekerDetails.resumeUrl);
+    detailsData.append('skills', jobSeekerDetails.skills);
+    detailsData.append('education_level', jobSeekerDetails.educationLevel);
+    detailsData.append('work_experience', jobSeekerDetails.workExperience);
+    detailsData.append('portfolio_url', jobSeekerDetails.portfolioUrl);
+    detailsData.append('jobseeker_id', jobSeekerId);
+    detailsData.append('academic_certificate', jobSeekerDetails.academicCertificate);
+    detailsData.append('cv', jobSeekerDetails.cv);
+
+    try {
+      const detailsResponse = await fetch('http://127.0.0.1:8050/details/', {
+        method: 'POST',
+        body: detailsData,
+      });
+
+      if (!detailsResponse.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const detailsResult = await detailsResponse.json();
+      console.log('Details submitted successfully:', detailsResult);
+      resetFormFields();
+    } catch (error) {
+      console.error('Error submitting details:', error);
     }
   };
 
   return (
     <div className="form-container">
       <h2>Application Form</h2>
-      <form onSubmit={handleSubmit} className="application-form">
+      
+      <form onSubmit={handleBasicInfoSubmit} className="application-form">
         <h3>Job Seeker Information</h3>
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
@@ -134,7 +191,10 @@ const Form = () => {
             required
           />
         </div>
+        <button type="submit" className="submit-button">Submit Basic Info</button>
+      </form>
 
+      <form onSubmit={handleDetailsSubmit} className="application-form">
         <h3>Job Seeker Details</h3>
         <div className="form-group">
           <label htmlFor="resumeUrl">Resume URL:</label>
@@ -192,17 +252,6 @@ const Form = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="jobSeekerId">Job Seeker ID:</label>
-          <input
-            type="text"
-            id="jobSeekerId"
-            name="jobSeekerId"
-            value={jobSeekerDetails.jobSeekerId}
-            onChange={handleJobSeekerDetailsChange}
-            required
-          />
-        </div>
-        <div className="form-group">
           <label htmlFor="academicCertificate">Academic Certificate:</label>
           <input
             type="file"
@@ -222,7 +271,7 @@ const Form = () => {
             required
           />
         </div>
-        <button type="submit" className="submit-button">Submit</button>
+        <button type="submit" className="submit-button">Submit Details</button>
       </form>
     </div>
   );
