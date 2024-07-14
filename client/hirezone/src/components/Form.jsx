@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import './Form.css'; // Import the CSS file
+import './Form.css'; // Import the CSS file
 
 const Form = () => {
   // State for job seekers' basic information
