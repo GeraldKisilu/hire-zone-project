@@ -25,16 +25,7 @@ const Header = () => {
                         <li><NavLink to="/login" activeClassName="active">Login</NavLink></li>
                         <li><NavLink to="/insights" activeClassName="active">Company Insights</NavLink></li>
                         <li><NavLink to="/feedback" activeClassName="active">Feedback</NavLink></li>
-                        <li className="dropdown">
-                            <button onClick={toggleDropdown}>Profile</button>
-                            {isDropdownOpen && (
-                                <ul className="dropdown-menu">
-                                    <li><Link to="/profile">View Profile</Link></li>
-                                    <li><Link to="/settings">Settings</Link></li>
-                                    <li><Link to="/logout">Logout</Link></li>
-                                </ul>
-                            )}
-                        </li>
+                        
                     </ul>
                     <button className="menu-toggle" onClick={toggleMenu}>
                         {isMenuOpen ? 'Close' : 'Menu'}

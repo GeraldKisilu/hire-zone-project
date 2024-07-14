@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './Login.css'; // Import the CSS file
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
     const [role, setRole] = useState('job_seeker');
@@ -18,8 +18,9 @@ const Login = () => {
         location: '',
         contactEmail: ''
     });
+    const [successMessage, setSuccessMessage] = useState('');
 
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -54,6 +55,10 @@ const Login = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
+                setSuccessMessage('Account has been created successfully, please log in to proceed');
+                setTimeout(() => {
+                    setSuccessMessage('');
+                }, 8000);
                 // Redirect to login page
                 navigate('/login');
             } else {
@@ -105,6 +110,7 @@ const Login = () => {
     return (
         <div className="login-container">
             <h2>User Registration / Login</h2>
+            {successMessage && <div className="success-message">{successMessage}</div>}
             <form className="login-form">
                 <div className="role-selection">
                     <label>Role: </label>
