@@ -61,7 +61,6 @@ const JobListings = () => {
           <option value="Sales">Sales</option>
           <option value="Finance">Finance</option>
           <option value="Human Resources">Human Resources</option>
-          {/* Add more categories as needed */}
         </select>
       </div>
       <ul className="job-list">

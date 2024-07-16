@@ -22,7 +22,6 @@ const Header = () => {
                     <ul className={isMenuOpen ? 'menu open' : 'menu'}>
                         <li><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
                         <li><NavLink to="/jobs" activeClassName="active">Search for Jobs</NavLink></li>
-                        <li><NavLink to="/login" activeClassName="active">Login</NavLink></li>
                         <li><NavLink to="/insights" activeClassName="active">Company Insights</NavLink></li>
                         <li><NavLink to="/feedback" activeClassName="active">Feedback</NavLink></li>
                         
