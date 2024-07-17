@@ -1,24 +1,45 @@
-# React + Vite
+# HIREZONE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Contributors
+1. Gerald Kisilu
+2. Ahmed Mohamed
+3. Brandon Dando
 
-Currently, two official plugins are available:
+### Project Definition
+This application is an employment scheme platform where job seekers and employers interact. It allows users to create accounts, search for jobs, and for employers to manage job postings and view applications. The project was collaboratively developed by *Gerald Kisilu*, *Ahmed Mohamed*, and *Brandon Dando*.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+### Features
+Technologies Used
+Installation
+Running the Application
+Project Structure
+API Endpoints
+Contributors
+Features
+User authentication and authorization
+Job seekers can search for jobs and apply
+Employers can post job listings and view applications
+Upload and manage academic certificates and CVs
 
+## Backend
+### Create a virtual environment and activate it:
+*pipenv install* then *pipenv shell*
 
+### Install the required dependencies:
+*pip install*
 
-## MVPs
-1. User Roles and User Profiles
-2. Search Feature
-3. Skill Verification and Endorsements
-4. Growth Prospects and Company Insights
-5. Automated Interview and Scheduling
-6. Feedback and Ratings
+### Set up the database:
+1. flask db init
+2. flask db migrate
+3. flask db upgrade
 
-## User Stories
--As an employer, I should be able to create, update, and delete job listings, so that I can attract suitable candidates for open positions.
--As a job seeker, I should be able to search for job listings based on various criteria such as industry, location, and required skills, so that I can find opportunities that match my qualifications and preferences.
--As a job seeker, I should be able to view insights about companies, including growth prospects and employee reviews, so that I can make informed decisions about where to apply.
--As a user, I should be able to provide feedback and ratings for employers or job seekers I have interacted with, so that the platform maintains a high level of trust and quality.
+### Run the backend server:
+*python main.py*
+
+## Frontend Setup
+### Create a virtual environment and activate it:
+*pipenv install* then *pipenv shell*
+
+### Run Vite
+*npm run dev*

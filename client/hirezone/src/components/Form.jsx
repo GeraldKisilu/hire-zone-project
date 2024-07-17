@@ -61,7 +61,6 @@ const Form = () => {
     setJobSeekerId(null);
   };
 
-  // Handle form submission for basic information
   const handleBasicInfoSubmit = async (e) => {
     e.preventDefault();
 
